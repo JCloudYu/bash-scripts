@@ -29,14 +29,14 @@ REPL
 	yum install -y nginx nginx-module*;
 
 	echo "Installing nginx syntax definition for vim...";
-	curl -s "https://raw.githubusercontent.com/JCloudYu/centos-scripts/master/universal/install-vim-nginx-syntax.sh" | sh;
+	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/universal/install-vim-nginx-syntax.sh" | sh;
 	
 	if [ "$?" -ne 0 ]; then echo "    Failed to download the file!"; fi;
 
 	echo "Installing nginx shorthand ssl conf files...";
-	curl -s "https://raw.githubusercontent.com/JCloudYu/centos-scripts/master/nginx/ssl-safe.conf" > /etc/nginx/ssl-safe.conf;
+	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/ssl-safe.conf" > /etc/nginx/ssl-safe.conf;
 	if [ "$?" -ne 0 ]; then echo "    Failed to download [ssl-safe.conf]!"; fi;
-	curl -s "https://raw.githubusercontent.com/JCloudYu/centos-scripts/master/nginx/ssl-legacy.conf" > /etc/nginx/ssl-legacy.conf;
+	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/ssl-legacy.conf" > /etc/nginx/ssl-legacy.conf;
 	if [ "$?" -ne 0 ]; then echo "    Failed to download [ssl-legacy.conf]!"; fi;
 fi;
 
