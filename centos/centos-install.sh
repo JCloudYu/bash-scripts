@@ -30,12 +30,12 @@ REPL
 
 	echo "Installing nginx syntax definition for vim...";
 	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/universal/install-vim-nginx-syntax.sh" | sh;
-	
 	if [ "$?" -ne 0 ]; then echo "    Failed to download the file!"; fi;
 
 	echo "Installing nginx shorthand ssl conf files...";
 	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/ssl-safe.conf" > /etc/nginx/ssl-safe.conf;
 	if [ "$?" -ne 0 ]; then echo "    Failed to download [ssl-safe.conf]!"; fi;
+	
 	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/ssl-legacy.conf" > /etc/nginx/ssl-legacy.conf;
 	if [ "$?" -ne 0 ]; then echo "    Failed to download [ssl-legacy.conf]!"; fi;
 fi;
@@ -62,7 +62,7 @@ fi;
 
 
 
-echo -n "Install nodejs 8.x? [y/n]";
+echo -n "Install nodejs 8.x? [y/n] ";
 read DECISION;
 if [ "${DECISION}" == "y" ]; then
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -;
