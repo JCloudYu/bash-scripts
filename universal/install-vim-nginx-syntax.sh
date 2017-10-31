@@ -4,7 +4,7 @@ echo "Start installing nginx's vim syntax file...";
 mkdir -p ~/.vim/syntax/
 cd ~/.vim/syntax/
 echo -n "    Fetching syntax file... ";
-curl -s https://raw.githubusercontent.com/JCloudYu/centos-scripts/master/nginx/nginx.vim > nginx.vim
+wget https://raw.githubusercontent.com/JCloudYu/centos-scripts/master/nginx/nginx.vim -O nginx.vim
 if [ $? -ne 0 ]; then
 	echo "Failed!" exit 1;
 else
