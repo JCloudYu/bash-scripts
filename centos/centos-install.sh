@@ -68,3 +68,20 @@ if [ "${DECISION}" == "y" ]; then
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -;
 	yum -y install nodejs;
 fi;
+
+
+
+echo -n "Install latest git from Wendisco? [y/n]";
+read DECISION;
+if [ "$DECISION" == ""y ]; then
+	cat <<REPO > /etc/yum.repos.d/wandisco-git.repo
+[wandisco-git]
+name=Wandisco git repo for CentOS-\$releasever
+baseurl=http://opensource.wandisco.com/centos/\$releasever/git/x86_64/
+enabled=1
+gpgcheck=1
+gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+REPO
+
+	yum install -y git	
+fi
