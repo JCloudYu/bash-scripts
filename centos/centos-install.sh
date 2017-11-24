@@ -14,9 +14,18 @@ if [ $? -ne 0 ]; then echo "Error installing epel-release package"; fi;
 
 
 
-echo "Installing tools... (wget vim unzip yum-utils python-devel python-pip start-stop-daemon screen)";
-yum -y install wget vim unzip yum-utils python-devel python-pip start-stop-daemon git java curl screen
+echo "Installing tools... (wget vim unzip yum-utils python-devel python-pip start-stop-daemon java curl screen)";
+yum -y install wget vim unzip yum-utils python-devel python-pip start-stop-daemon java curl screen
 echo -e "set ts=4\nset nu\nset noai\n" >> /etc/vimrc
+
+
+
+echo -n "Install git from Wendisco? [y/n] ";
+read DECISION;
+if [ "$DECISION" == "y" ]; then
+	wget https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/centos/repos/wandisco-git.repo -O /etc/yum.repos.d/wandisco-git.repo
+	yum install -y git	
+fi
 
 
 
@@ -67,14 +76,6 @@ if [ "${DECISION}" == "y" ]; then
 	yum -y install nodejs;
 fi;
 
-
-
-echo -n "Install git from Wendisco? [y/n] ";
-read DECISION;
-if [ "$DECISION" == "y" ]; then
-	wget https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/centos/repos/wandisco-git.repo -O /etc/yum.repos.d/wandisco-git.repo
-	yum install -y git	
-fi
 
 
 if [ "${CENTOS_VER}" -le 6 ]; then
