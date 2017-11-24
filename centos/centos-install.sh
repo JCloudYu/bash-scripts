@@ -43,18 +43,10 @@ fi;
 
 
 
-echo -n "Install mongodb 3.4? [y/n] ";
+echo -n "Install mongodb? [y/n] ";
 read DECISION;
 if [ "${DECISION}" == "y" ]; then
-	cat <<REPO > /etc/yum.repos.d/mongodb-org.3.x.repo
-[mongodb-org-3.4]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.4/\$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
-REPO
-
+	wget https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/centos/repos/mongodb-org.repo -O /etc/yum.repos.d/mongodb-org.repo
 	yum install -y mongodb-org
 fi;
 
@@ -71,17 +63,9 @@ fi;
 
 
 
-echo -n "Install latest git from Wendisco? [y/n]";
+echo -n "Install git from Wendisco? [y/n]";
 read DECISION;
 if [ "$DECISION" == ""y ]; then
-	cat <<REPO > /etc/yum.repos.d/wandisco-git.repo
-[wandisco-git]
-name=Wandisco git repo for CentOS-\$releasever
-baseurl=http://opensource.wandisco.com/centos/\$releasever/git/x86_64/
-enabled=1
-gpgcheck=1
-gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
-REPO
-
+	wget https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/centos/repos/wandisco-git.repo -O /etc/yum.repos.d/wandisco-git.repo
 	yum install -y git	
 fi
