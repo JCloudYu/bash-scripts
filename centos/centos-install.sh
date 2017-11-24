@@ -18,14 +18,7 @@ echo -e "set ts=4\nset nu\nset noai\n" >> /etc/vimrc
 echo -n "Install nginx? [y/n] ";
 read DECISION;
 if [ "${DECISION}" == "y" ]; then
-	cat <<REPL > /etc/yum.repos.d/nginx.repo
-[nginx]
-name=nginx repo
-baseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/
-gpgcheck=0
-enabled=1
-REPL
-
+	wget https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/centos/repos/nginx.repo -O /etc/yum.repos.d/nginx.repo
 	yum install -y nginx nginx-module*;
 
 	echo "Installing nginx syntax definition for vim...";
@@ -38,6 +31,10 @@ REPL
 	
 	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/ssl-legacy.conf" > /etc/nginx/ssl-legacy.conf;
 	if [ "$?" -ne 0 ]; then echo "    Failed to download [ssl-legacy.conf]!"; fi;
+
+	echo "Installing nginx shorthand proxy_pass conf files...";
+	curl -s "https://raw.githubusercontent.com/JCloudYu/bash-scripts/master/nginx/proxy_pass_params.conf" > /etc/nginx/proxy_pass_params.conf;
+	if [ "$?" -ne 0 ]; then echo "    Failed to download [proxy_pass_params.conf]!"; fi;
 fi;
 
 
